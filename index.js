@@ -47,5 +47,8 @@ vk.longpoll.on('message', (message)=>{
     else if (message.text === 'Ya,es el em Hayastanic,es ba inchi enq angleren xosum?') {
         message.send('esim chgitem.))) Anunet incha?');
     }
+    else {
+        message.send('ay qez ban')
+    }
 
 });
