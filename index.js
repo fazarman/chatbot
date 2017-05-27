@@ -21,7 +21,7 @@ vk.longpoll.on('message', (message)=>{
     let arr = message.text.split(" ");
     console.log(arr);
     if (arr[0] === 'add'){
-
+        words.create({word:req.body.text})
     }
     else if (arr[0] === 'get'){
 
