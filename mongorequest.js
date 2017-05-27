@@ -23,25 +23,19 @@ let wordSchema = new mongoose.Schema ({
 
 let words = mongoose.model("words",wordSchema);
 
-const wardAdd = {
-    add : ()=>{
-        words.find("words",(err,data)=>{
-        if (err) {
-            throw err;
-        } else {
-            console.log(data);
-            res.send(data);
-        }
-        });
-        words.create("words",(err,data)=>{
-            if (err) {
+const mongo = {
+    add : (word,trans)=>{
+        console.log(word);
+        console.log(trans);
+        words.create({word:word,translation:trans},(err,doc)=>{
+            if (err){
                 throw err;
+            }else{
+                console.log(doc);
             }
-            else
-            {
-                console.log(data);
-                res.send(data);
-            }
-        });
+        })
+
+
     }
 }
+module.exports = mongo;

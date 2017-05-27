@@ -1,5 +1,7 @@
 const VK = require('vk-io');
-const mongo = require('./mongorequest')
+const mongo = require('./mongorequest');
+
+
 const vk = new VK({
     token:'e23bafb0f9a3439db58f9296780fda07ee7a1da6880e6bafbf74bc3477c8dd1c989d8661a17616bad1860'
 });
@@ -21,7 +23,7 @@ vk.longpoll.on('message', (message)=>{
     let arr = message.text.split(" ");
     console.log(arr);
     if (arr[0] === 'add'){
-        words.create({word:req.body.text})
+        mongo.add(arr[1],arr[2])
     }
     else if (arr[0] === 'get'){
 
