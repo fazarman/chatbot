@@ -24,5 +24,24 @@ let wordSchema = new mongoose.Schema ({
 let words = mongoose.model("words",wordSchema);
 
 const wardAdd = {
-    add : ()=>{}
-};
+    add : ()=>{
+        words.find("words",(err,data)=>{
+        if (err) {
+            throw err;
+        } else {
+            console.log(data);
+            res.send(data);
+        }
+        });
+        words.create("words",(err,data)=>{
+            if (err) {
+                throw err;
+            }
+            else
+            {
+                console.log(data);
+                res.send(data);
+            }
+        });
+    }
+}
