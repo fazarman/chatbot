@@ -31,26 +31,33 @@ const mongo = {
             if (err) {
                 throw err;
             } else {
-                console.log(doc);
+                //console.log(doc);
             }
         });
     },
-    get:(word)=>{
-        words.findOne(word,'translation',{lean:true},(err, doc)=>{
+    get:(word, next)=>{
+        words.findOne({'word':word},'translation',{lean:true},(err, doc)=>{
             if (err) {
                 throw err;
             } else {
-                console.log(doc);
+               next(null,doc);
             }
         })
+    },
+    getAll: (next)=>{
+        words.find({},null,{lean:true},(err,doc)=>{
+            if (err){
+                throw err;
+            }else{
+                let a = doc.map((one)=>{
+                    return one.word+" "+one.translation+"\n"git;
+                })
+                next(null,a);
+            }
+        });
+
     }
 }
-
-const db = {
-    get: words.findOne()
-}
-
-
 
 
 

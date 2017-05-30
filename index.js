@@ -27,7 +27,21 @@ vk.longpoll.on('message', (message)=>{
         mongo.add(arr[1],arr[2]);
     }
     else if (arr[0] === 'get'){
-        mongo.get(arr[1]);
+        mongo.get(arr[1],(err, doc)=>{
+            if(err) throw err;
+            else message.send(doc.translation);
+        });
+
+        //message.send()
+    }else if (arr[0] === 'getall'){
+        mongo.getAll((err,doc)=>{
+            if (err){
+                throw err;
+            }else{
+                message.send(`${doc}`);
+
+            }
+        });
     }
 
 });
