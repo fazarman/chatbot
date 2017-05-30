@@ -24,18 +24,34 @@ let wordSchema = new mongoose.Schema ({
 let words = mongoose.model("words",wordSchema);
 
 const mongo = {
-    add : (word,trans)=>{
+    add: (word, trans) => {
         console.log(word);
         console.log(trans);
-        words.create({word:word,translation:trans},(err,doc)=>{
-            if (err){
+        words.create({word: word, translation: trans}, (err, doc) => {
+            if (err) {
                 throw err;
-            }else{
+            } else {
+                console.log(doc);
+            }
+        });
+    },
+    get:(word)=>{
+        words.findOne(word,'translation',{lean:true},(err, doc)=>{
+            if (err) {
+                throw err;
+            } else {
                 console.log(doc);
             }
         })
-
-
     }
 }
+
+const db = {
+    get: words.findOne()
+}
+
+
+
+
+
 module.exports = mongo;
